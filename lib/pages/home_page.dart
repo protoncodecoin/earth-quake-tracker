@@ -18,8 +18,24 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Green Earth"),
+        ),
+        body: Consumer<AppDataProvider>(
+            builder: (context, provider, child) => provider.hasDataLoaded
+                ? provider.earthquakeModel!.features!.isEmpty
+                    ? const Center(
+                        child: Text("No record found"),
+                      )
+                    : ListView.builder(
+                        itemCount: provider.earthquakeModel!.features!.length,
+                        itemBuilder: (context, index) {
+                          final data = provider
+                              .earthquakeModel!.features![index].properties!;
+                          return ListTile(title: ,);
+                        },
+                      )
+                : const Text("data")));
   }
 }
